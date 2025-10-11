@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuralApps — Ecosistema de Software</title>
+  <meta name="description" content="NeuralApps: POS, Builder, Studio, Cloud y StreetBeasts Studio. Tecnología simple y poderosa para tu negocio."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="#inicio" aria-label="NeuralApps, ir al inicio">
+        <img src="assets/logo.svg" alt="Logo NeuralApps" class="brand__logo" />
+        <span class="brand__name">Neural<span class="brand__accent">Apps</span></span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
+        <ul id="menu" class="nav__list">
+          <li><a href="#inicio">Inicio</a></li>
+          <li class="nav__dropdown">
+            <button class="nav__dropbtn" aria-haspopup="true" aria-expanded="false">Divisiones</button>
+            <ul class="nav__dropmenu" role="menu">
+              <li><a href="#pos">NeuralPOS</a></li>
+              <li><a href="#builder">NeuralBuilder</a></li>
+              <li><a href="#studio">NeuralStudio</a></li>
+              <li><a href="#cloud">NeuralCloud</a></li>
+              <li><a href="#street">StreetBeasts Studio</a></li>
+            </ul>
+          </li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto" class="btn btn--primary">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <h1>Construimos tecnología simple y poderosa</h1>
+        <p>Un ecosistema de software para vender, crear y diseñar: POS, constructor de apps, estudio creativo y nube segura.</p>
+        <div class="hero__cta">
+          <a href="#contacto" class="btn btn--primary">Hablemos</a>
+          <a href="#divisiones" class="btn btn--ghost">Ver divisiones</a>
+        </div>
+      </div>
+      <div class="hero__card">
+        <ul class="bullet">
+          <li>⚡ Rápido de usar y desplegar</li>
+          <li>🔒 Datos seguros con NeuralCloud</li>
+          <li>🧠 Integración con IA (opcional)</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <section id="divisiones" class="section">
+    <div class="container">
+      <h2>Divisiones</h2>
+      <div class="grid cards">
+        <article id="pos" class="card">
+          <h3>NeuralPOS</h3>
+          <p>TPV inteligente para ventas, inventario, membresías y reportes. Ideal para gimnasios, farmacias, ferreterías y más.</p>
+          <a href="#contacto" class="link">Solicitar demo →</a>
+        </article>
+        <article id="builder" class="card">
+          <h3>NeuralBuilder</h3>
+          <p>Constructor visual de módulos y apps. Incluye <strong>NeuralFlow</strong>, <strong>LineCode</strong> y <strong>SnapCode</strong>.</p>
+          <a href="#contacto" class="link">Quiero construir →</a>
+        </article>
+        <article id="studio" class="card">
+          <h3>NeuralStudio</h3>
+          <p>Diseño UI/UX, branding y herramientas creativas como <strong>NeuralDraw</strong> y <strong>NeuralConvert</strong>.</p>
+          <a href="#contacto" class="link">Ver portafolio →</a>
+        </article>
+        <article id="cloud" class="card">
+          <h3>NeuralCloud</h3>
+          <p>Nube segura para sincronización, usuarios, respaldos y despliegues. Compatible con Vercel, Firebase o servidores propios.</p>
+          <a href="#contacto" class="link">Conectar mi app →</a>
+        </article>
+        <article id="street" class="card">
+          <h3>StreetBeasts Studio</h3>
+          <p>Producción audiovisual y videojuegos. Personajes, animación y marketing para marcas con estilo.</p>
+          <a href="#contacto" class="link">Producir contenido →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros" class="section section--alt">
+    <div class="container about">
+      <div>
+        <h2>Nosotros</h2>
+        <p>NeuralApps nace para acercar la tecnología a negocios reales. Creamos herramientas accesibles, eficientes y listas para trabajar desde el día uno.</p>
+        <ul class="bullet">
+          <li>Implementación rápida y soporte humano</li>
+          <li>Arquitectura modular; escala por etapas</li>
+          <li>Branding y diseño integrados</li>
+        </ul>
+      </div>
+      <div class="about__badge">
+        <div class="badge">Hecho por <strong>NeuralApps</strong></div>
+        <small>© NeuralApps · Todos los derechos reservados</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section">
+    <div class="container contact">
+      <h2>Contacto</h2>
+      <form class="form" onsubmit="return false;">
+        <div class="form__row">
+          <label>Nombre
+            <input type="text" placeholder="Tu nombre" required />
+          </label>
+          <label>Correo
+            <input type="email" placeholder="tu@email.com" required />
+          </label>
+        </div>
+        <label>Mensaje
+          <textarea rows="4" placeholder="Cuéntanos tu proyecto"></textarea>
+        </label>
+        <div class="form__actions">
+          <button class="btn btn--primary" id="btnSend">Enviar</button>
+          <span class="form__msg" id="msg"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>Hecho por <strong>NeuralApps</strong></span>
+      <nav class="footer__nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#divisiones">Divisiones</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
