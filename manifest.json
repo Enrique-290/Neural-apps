@@ -1,0 +1,14 @@
+{
+  "name": "NoteHub",
+  "short_name": "NoteHub",
+  "description": "Notas completas con texto, tareas, enlaces, fotos, cámara, capturas y dibujos.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "icons": [
+    {"src":"./assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

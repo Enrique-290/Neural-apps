@@ -1,7 +1,0 @@
-<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NeuralApps logo">
-  <rect width="256" height="256" rx="48" fill="#0D0D0D"/>
-  <g transform="translate(48,48)">
-    <path d="M24 20a12 12 0 1 1 0 24h-2v68a12 12 0 0 0 12 12h44l-10.3 10.3a12 12 0 1 0 17 17l32-32a12 12 0 0 0 0-17l-32-32a12 12 0 1 0-17 17L120 112H34a36 36 0 0 1-36-36V44h-2a12 12 0 0 1 0-24h28z" fill="#0ea5e9"/>
-    <circle cx="128" cy="24" r="14" fill="#0ea5e9"/>
-  </g>
-</svg>

@@ -1,148 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeuralApps — Ecosistema de Software</title>
-  <meta name="description" content="NeuralApps: POS, Builder, Studio, Cloud y StreetBeasts Studio. Tecnología simple y poderosa para tu negocio."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="NoteHub — notas completas con texto, tareas, enlaces, fotos, cámara, capturas y dibujos.">
+  <title>NoteHub v0.2.3</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icon.svg">
+  <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container header__inner">
-      <a class="brand" href="#inicio" aria-label="NeuralApps, ir al inicio">
-        <img src="assets/logo.svg" alt="Logo NeuralApps" class="brand__logo" />
-        <span class="brand__name">Neural<span class="brand__accent">Apps</span></span>
-      </a>
-      <nav class="nav" aria-label="Principal">
-        <button class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
-        <ul id="menu" class="nav__list">
-          <li><a href="#inicio">Inicio</a></li>
-          <li class="nav__dropdown">
-            <button class="nav__dropbtn" aria-haspopup="true" aria-expanded="false">Divisiones</button>
-            <ul class="nav__dropmenu" role="menu">
-              <li><a href="#pos">NeuralPOS</a></li>
-              <li><a href="#builder">NeuralBuilder</a></li>
-              <li><a href="#studio">NeuralStudio</a></li>
-              <li><a href="#cloud">NeuralCloud</a></li>
-              <li><a href="#street">StreetBeasts Studio</a></li>
-            </ul>
-          </li>
-          <li><a href="#nosotros">Nosotros</a></li>
-          <li><a href="#contacto" class="btn btn--primary">Contacto</a></li>
-        </ul>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <button class="brand" id="brandButton" aria-label="Ir a todas las notas">
+        <span class="brand-mark">📝</span><span>NoteHub</span><small>v0.2.3</small>
+      </button>
+      <div class="top-actions">
+        <button class="icon-btn" id="searchToggle" title="Buscar">⌕</button>
+        <button class="icon-btn" id="viewToggle" title="Cambiar vista">☷</button>
+        <button class="icon-btn" id="topMore" title="Más opciones">⋮</button>
+      </div>
+    </header>
+
+    <aside class="sidebar" id="sidebar">
+      <nav id="navList" class="nav-list" aria-label="Filtros">
+        <button class="nav-item active" data-filter="all"><span class="nav-icon">▤</span><span class="nav-label">Todas</span><b id="count-all">0</b></button>
+        <button class="nav-item" data-filter="text"><span class="nav-icon">T</span><span class="nav-label">Texto</span><b id="count-text">0</b></button>
+        <button class="nav-item" data-filter="task"><span class="nav-icon">☑</span><span class="nav-label">Tareas</span><b id="count-task">0</b></button>
+        <button class="nav-item" data-filter="audio"><span class="nav-icon">♩</span><span class="nav-label">Voz</span><b id="count-audio">0</b></button>
+        <button class="nav-item" data-filter="draw"><span class="nav-icon">✎</span><span class="nav-label">Dibujos</span><b id="count-draw">0</b></button>
+        <button class="nav-item" data-filter="photo"><span class="nav-icon">▧</span><span class="nav-label">Fotos</span><b id="count-photo">0</b></button>
+        <button class="nav-item" data-filter="video"><span class="nav-icon">▹</span><span class="nav-label">Videos</span><b id="count-video">0</b></button>
+        <button class="nav-item" data-filter="screenshot"><span class="nav-icon">⌗</span><span class="nav-label">Capturas</span><b id="count-screenshot">0</b></button>
+        <button class="nav-item" data-filter="document"><span class="nav-icon">▱</span><span class="nav-label">Documentos</span><b id="count-document">0</b></button>
+        <button class="nav-item" data-filter="link"><span class="nav-icon">↗</span><span class="nav-label">Enlaces</span><b id="count-link">0</b></button>
       </nav>
-    </div>
-  </header>
+      <div class="sidebar-footer">
+        <button class="nav-item" data-filter="favorites"><span class="nav-icon">☆</span><span class="nav-label">Favoritas</span><b id="count-favorites">0</b></button>
+        <button class="nav-item" data-filter="archived"><span class="nav-icon">⌑</span><span class="nav-label">Archivadas</span><b id="count-archived">0</b></button>
+        <div class="sidebar-tools"><button class="icon-btn small" title="Ajustes">⚙</button><button class="icon-btn small" title="Ayuda">?</button></div>
+      </div>
+    </aside>
 
-  <main id="inicio" class="hero">
-    <div class="container hero__inner">
-      <div class="hero__copy">
-        <h1>Construimos tecnología simple y poderosa</h1>
-        <p>Un ecosistema de software para vender, crear y diseñar: POS, constructor de apps, estudio creativo y nube segura.</p>
-        <div class="hero__cta">
-          <a href="#contacto" class="btn btn--primary">Hablemos</a>
-          <a href="#divisiones" class="btn btn--ghost">Ver divisiones</a>
+    <main class="main-content">
+      <section id="libraryView" class="view active-view">
+        <div class="search-panel hidden" id="searchPanel">
+          <span>⌕</span><input id="searchInput" type="search" placeholder="Buscar por título, contenido o etiqueta…"><button class="icon-btn small" id="searchClose">×</button>
         </div>
-      </div>
-      <div class="hero__card">
-        <ul class="bullet">
-          <li>⚡ Rápido de usar y desplegar</li>
-          <li>🔒 Datos seguros con NeuralCloud</li>
-          <li>🧠 Integración con IA (opcional)</li>
-        </ul>
-      </div>
-    </div>
-  </main>
+        <section class="library-head">
+          <div><p class="eyebrow">Biblioteca</p><h1 id="sectionTitle">Todas las notas</h1><p class="subtitle">Tus ideas, archivos y pendientes en un solo lugar.</p></div>
+          <label class="sort-control"><span>≡↓</span><select id="sortSelect"><option value="modified-desc">Última modificación</option><option value="created-desc">Más recientes</option><option value="title-asc">Título A–Z</option><option value="title-desc">Título Z–A</option><option value="color-asc">Por color</option></select><span>⌄</span></label>
+        </section>
+        <section class="notes-wrap"><div id="notesGrid" class="notes-grid"></div><div id="emptyState" class="empty-state hidden"><div>🗒️</div><h2>No encontramos notas</h2><p>Cambia el filtro o crea una nota nueva.</p><button class="primary-btn" data-open-create>＋ Nueva nota</button></div></section>
+        <footer class="statusbar"><span id="statusText">Guardado local</span><span id="noteCount">0 notas</span></footer>
+      </section>
 
-  <section id="divisiones" class="section">
-    <div class="container">
-      <h2>Divisiones</h2>
-      <div class="grid cards">
-        <article id="pos" class="card">
-          <h3>NeuralPOS</h3>
-          <p>TPV inteligente para ventas, inventario, membresías y reportes. Ideal para gimnasios, farmacias, ferreterías y más.</p>
-          <a href="#contacto" class="link">Solicitar demo →</a>
-        </article>
-        <article id="builder" class="card">
-          <h3>NeuralBuilder</h3>
-          <p>Constructor visual de módulos y apps. Incluye <strong>NeuralFlow</strong>, <strong>LineCode</strong> y <strong>SnapCode</strong>.</p>
-          <a href="#contacto" class="link">Quiero construir →</a>
-        </article>
-        <article id="studio" class="card">
-          <h3>NeuralStudio</h3>
-          <p>Diseño UI/UX, branding y herramientas creativas como <strong>NeuralDraw</strong> y <strong>NeuralConvert</strong>.</p>
-          <a href="#contacto" class="link">Ver portafolio →</a>
-        </article>
-        <article id="cloud" class="card">
-          <h3>NeuralCloud</h3>
-          <p>Nube segura para sincronización, usuarios, respaldos y despliegues. Compatible con Vercel, Firebase o servidores propios.</p>
-          <a href="#contacto" class="link">Conectar mi app →</a>
-        </article>
-        <article id="street" class="card">
-          <h3>StreetBeasts Studio</h3>
-          <p>Producción audiovisual y videojuegos. Personajes, animación y marketing para marcas con estilo.</p>
-          <a href="#contacto" class="link">Producir contenido →</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="nosotros" class="section section--alt">
-    <div class="container about">
-      <div>
-        <h2>Nosotros</h2>
-        <p>NeuralApps nace para acercar la tecnología a negocios reales. Creamos herramientas accesibles, eficientes y listas para trabajar desde el día uno.</p>
-        <ul class="bullet">
-          <li>Implementación rápida y soporte humano</li>
-          <li>Arquitectura modular; escala por etapas</li>
-          <li>Branding y diseño integrados</li>
-        </ul>
-      </div>
-      <div class="about__badge">
-        <div class="badge">Hecho por <strong>NeuralApps</strong></div>
-        <small>© NeuralApps · Todos los derechos reservados</small>
-      </div>
-    </div>
-  </section>
-
-  <section id="contacto" class="section">
-    <div class="container contact">
-      <h2>Contacto</h2>
-      <form class="form" onsubmit="return false;">
-        <div class="form__row">
-          <label>Nombre
-            <input type="text" placeholder="Tu nombre" required />
-          </label>
-          <label>Correo
-            <input type="email" placeholder="tu@email.com" required />
-          </label>
+      <section id="editorView" class="view editor-view">
+        <div class="editor-head" id="editorHead">
+          <button class="icon-btn" id="backButton" aria-label="Regresar">←</button>
+          <div class="editor-title-wrap">
+            <input id="editorTitle" class="editor-title" maxlength="100" placeholder="Título de la nota">
+            <div class="editor-meta"><span id="editorLabel">● Sin etiqueta</span><span id="editorCreated">Creada:</span><span id="editorModified">Modificada:</span></div>
+          </div>
+          <button class="icon-btn" id="colorButton" title="Color">🎨</button>
+          <button class="icon-btn" id="favoriteButton" title="Favorita">☆</button>
+          <button class="icon-btn" id="editorAddButton" title="Agregar bloque">＋</button>
+          <button class="icon-btn" id="editorMore" title="Más">⋮</button>
         </div>
-        <label>Mensaje
-          <textarea rows="4" placeholder="Cuéntanos tu proyecto"></textarea>
-        </label>
-        <div class="form__actions">
-          <button class="btn btn--primary" id="btnSend">Enviar</button>
-          <span class="form__msg" id="msg"></span>
-        </div>
-      </form>
-    </div>
-  </section>
+        <div id="blocksList" class="blocks-list"></div>
+        <button class="fab editor-fab" id="editorFab" aria-label="Agregar bloque">＋</button>
+        <nav class="editor-bottom">
+          <button data-quick-add="text"><b>T</b><span>Texto</span></button>
+          <button data-quick-add="task"><b>☑</b><span>Tarea</span></button>
+          <button data-quick-add="link"><b>↗</b><span>Enlace</span></button>
+          <button data-quick-add="photo"><b>▧</b><span>Foto</span></button>
+          <button id="moreBlocksButton"><b>▦</b><span>Más</span></button>
+        </nav>
+      </section>
+    </main>
 
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span>Hecho por <strong>NeuralApps</strong></span>
-      <nav class="footer__nav">
-        <a href="#inicio">Inicio</a>
-        <a href="#divisiones">Divisiones</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </footer>
+    <button class="fab" id="createButton" data-open-create aria-label="Crear nota">＋</button>
+  </div>
 
-  <script src="app.js"></script>
+  <div class="modal-backdrop" id="createModal">
+    <form class="modal-card" id="createForm">
+      <div class="modal-header"><div><p class="eyebrow">Nueva nota</p><h2>Crea el contenedor</h2></div><button type="button" class="icon-btn" data-close-modal>×</button></div>
+      <label class="field"><span>Título</span><input id="newTitle" maxlength="100" required placeholder="Ej. Compra de moto"></label>
+      <label class="field"><span>Descripción breve</span><textarea id="newDescription" rows="3" maxlength="300" placeholder="Escribe una idea o resumen…"></textarea></label>
+      <div class="field"><span>Tipo inicial</span><div class="type-picker" id="typePicker"><button type="button" class="selected" data-type="text">T Texto</button><button type="button" data-type="task">☑ Tareas</button><button type="button" data-type="photo">▧ Foto</button><button type="button" data-type="link">↗ Enlace</button></div></div>
+      <div class="field"><span>Color</span><div class="color-picker" id="createColors"><button type="button" class="color-dot selected" data-color="yellow" style="--swatch:#fff4b3"></button><button type="button" class="color-dot" data-color="green" style="--swatch:#dcf8d3"></button><button type="button" class="color-dot" data-color="purple" style="--swatch:#eadcff"></button><button type="button" class="color-dot" data-color="blue" style="--swatch:#d8edff"></button><button type="button" class="color-dot" data-color="orange" style="--swatch:#ffe3c6"></button><button type="button" class="color-dot" data-color="cyan" style="--swatch:#d7f7f8"></button></div></div>
+      <div class="modal-actions"><button type="button" class="secondary-btn" data-close-modal>Cancelar</button><button class="primary-btn" type="submit">Crear nota</button></div>
+    </form>
+  </div>
+
+  <div class="modal-backdrop" id="addBlockModal"><div class="modal-card compact"><div class="modal-header"><div><p class="eyebrow">Contenido</p><h2>Agregar bloque</h2></div><button class="icon-btn" data-close-modal>×</button></div><div class="block-picker">
+    <button data-add-block="text"><b>T</b><span>Texto</span></button><button data-add-block="task"><b>☑</b><span>Lista de tareas</span></button><button data-add-block="link"><b>↗</b><span>Enlace URL</span></button><button data-add-block="photo"><b>▧</b><span>Fotos</span></button><button data-add-block="camera"><b>◉</b><span>Cámara</span></button><button data-add-block="screenshot"><b>⌗</b><span>Captura</span></button><button data-add-block="draw"><b>✎</b><span>Dibujo</span></button><button data-add-block="audio" class="muted"><b>♩</b><span>Audio · v0.2.4</span></button><button data-add-block="video" class="muted"><b>▹</b><span>Video · v0.2.4</span></button><button data-add-block="document" class="muted"><b>▱</b><span>Documento · v0.2.4</span></button>
+  </div></div></div>
+
+  <div class="modal-backdrop" id="colorModal"><div class="modal-card compact"><div class="modal-header"><h2>Color de la nota</h2><button class="icon-btn" data-close-modal>×</button></div><div class="color-picker large" id="editorColors"><button class="color-dot" data-color="yellow" style="--swatch:#fff4b3"></button><button class="color-dot" data-color="green" style="--swatch:#dcf8d3"></button><button class="color-dot" data-color="purple" style="--swatch:#eadcff"></button><button class="color-dot" data-color="blue" style="--swatch:#d8edff"></button><button class="color-dot" data-color="orange" style="--swatch:#ffe3c6"></button><button class="color-dot" data-color="cyan" style="--swatch:#d7f7f8"></button><button class="color-dot" data-color="white" style="--swatch:#ffffff"></button></div></div></div>
+
+  <div class="modal-backdrop" id="cameraModal"><div class="modal-card media-modal"><div class="modal-header"><div><p class="eyebrow">Cámara</p><h2>Tomar foto</h2></div><button class="icon-btn" id="closeCamera">×</button></div><video id="cameraPreview" autoplay playsinline muted></video><div class="camera-actions"><button class="secondary-btn" id="switchCamera" type="button">Cambiar cámara</button><button class="capture-btn" id="capturePhoto" type="button">●</button><span></span></div></div></div>
+
+  <div class="modal-backdrop" id="drawModal"><div class="modal-card draw-modal"><div class="modal-header"><div><p class="eyebrow">Dibujo</p><h2>Lienzo</h2></div><button class="icon-btn" id="closeDraw">×</button></div><div class="draw-tools"><div id="brushColors" class="mini-colors"><button data-brush="#111111" style="--swatch:#111111" class="selected"></button><button data-brush="#e74c3c" style="--swatch:#e74c3c"></button><button data-brush="#3498db" style="--swatch:#3498db"></button><button data-brush="#2ecc71" style="--swatch:#2ecc71"></button><button data-brush="#f39c12" style="--swatch:#f39c12"></button></div><label>Grosor <input id="brushSize" type="range" min="1" max="24" value="4"></label><button class="secondary-btn" id="undoDraw" type="button">Deshacer</button><button class="secondary-btn" id="clearDraw" type="button">Limpiar</button></div><canvas id="drawCanvas" width="1000" height="600"></canvas><div class="modal-actions"><button class="secondary-btn" id="cancelDraw" type="button">Cancelar</button><button class="primary-btn" id="saveDraw" type="button">Guardar dibujo</button></div></div></div>
+
+  <div class="modal-backdrop" id="noteMenuModal"><div class="modal-card compact"><div class="modal-header"><h2>Opciones de nota</h2><button class="icon-btn" data-close-modal>×</button></div><div class="sheet-actions"><button data-note-action="favorite">☆ Favorita</button><button data-note-action="archive">⌑ Archivar</button><button data-note-action="duplicate">⧉ Duplicar</button><button data-note-action="delete" class="danger">♲ Eliminar</button></div></div></div>
+
+  <input id="photoInput" type="file" accept="image/*" multiple hidden>
+  <input id="screenshotInput" type="file" accept="image/*" multiple hidden>
+  <div class="toast" id="toast"></div>
+  <script type="module" src="./assets/js/app.js"></script>
 </body>
 </html>
